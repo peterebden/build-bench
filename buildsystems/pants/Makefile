@@ -31,7 +31,7 @@ version: $(PANTS_DIR)/pants
 
 .NOTPARALLEL: pants%
 .PHONY: pants%
-pants%: $(CONFIGURED_BUILD_ROOT)/pants%/BUILD $(PANTS_DIR)/pants $(CONFIGURED_BUILD_ROOT)/pants%/pants.ini $(CONFIGURED_BUILD_ROOT)/pants%/.pants.d $(REPORTS_DIR)/$(TARGET_NAME).csv
+pants%: $(CONFIGURED_BUILD_ROOT)/pants%/BUILD $(PANTS_DIR)/pants $(CONFIGURED_BUILD_ROOT)/pants%/.pants.d $(REPORTS_DIR)/$(TARGET_NAME).csv
 	$(info ******* pants start)
 	cd $(CONFIGURED_BUILD_ROOT)/pants$*; $(call TIME_CMD,$@) $(PANTS_DIR)/pants test :test
 
@@ -51,12 +51,6 @@ $(PANTS_DIR)/pants:
 
 
 # make sure correct pants_version configured in project workspace
-.PRECIOUS: $(CONFIGURED_BUILD_ROOT)/pants%/pants.ini
-$(CONFIGURED_BUILD_ROOT)/pants%/pants.ini: $(CONFIGURED_BUILD_ROOT)/pants%/BUILD
-# intentionally avoiding sed -i because it is not cross compatible
-	@sed 's/pants_version.*$$/pants_version: $*/g'  $(CONFIGURED_BUILD_ROOT)/pants$*/pants.ini >  $(CONFIGURED_BUILD_ROOT)/pants$*/pants.ini.tmp && mv  $(CONFIGURED_BUILD_ROOT)/pants$*/pants.ini.tmp  $(CONFIGURED_BUILD_ROOT)/pants$*/pants.ini
-
-
 .PRECIOUS: $(CONFIGURED_BUILD_ROOT)/pants%/BUILD
 $(CONFIGURED_BUILD_ROOT)/pants%/BUILD: $(CONFIGURED_BUILD_SOURCE)
-	@python $(SCRIPTS_DIR)/apply-templates.py $(BUILDTEMPLATES_DIR)/$(BUILD_DEFINITIONS)/pants $(CONFIGURED_BUILD_ROOT)/pants$* --subprojectnum=$(SUBPROJECT_NUM) --filenum=$(FILE_NUM)
+	@python $(SCRIPTS_DIR)/apply-templates.py $(BUILDTEMPLATES_DIR)/$(BUILD_DEFINITIONS)/pants $(CONFIGURED_BUILD_ROOT)/pants$* --subprojectnum=$(SUBPROJECT_NUM) --filenum=$(FILE_NUM) --toolversion=$(PANTS_DEFAULT_VERSION)

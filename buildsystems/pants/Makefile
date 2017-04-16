@@ -59,4 +59,4 @@ $(CONFIGURED_BUILD_ROOT)/pants%/pants.ini: $(CONFIGURED_BUILD_ROOT)/pants%/BUILD
 
 .PRECIOUS: $(CONFIGURED_BUILD_ROOT)/pants%/BUILD
 $(CONFIGURED_BUILD_ROOT)/pants%/BUILD: $(CONFIGURED_BUILD_SOURCE)
-	@python $(SCRIPTS_DIR)/apply-templates.py $(BUILDTEMPLATES_DIR)/$(BUILD_DEFINITIONS)/pants $(CONFIGURED_BUILD_ROOT)/pants$* --subprojectnum=$(SUBPROJECT_NUM) --filenum=$(FILE_NUM)
+	@python $(SCRIPTS_DIR)/apply-templates.py $(BUILDTEMPLATES_DIR)/$(BUILD_DEFINITIONS)/pants $(CONFIGURED_BUILD_ROOT)/pants$* --subprojectnum=$(SUBPROJECT_NUM) --filenum=$(FILE_NUM) --toolversion=$(PANTS_DEFAULT_VERSION)

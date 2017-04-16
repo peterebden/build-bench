@@ -25,6 +25,10 @@ def main():
                         default=1,
                         type=int,
                         help='how many file clones to create')
+    parser.add_argument('--toolversion',
+                        default=None,
+                        type=str,
+                        help='optional required version to pass to scripts')
 
     args = parser.parse_args()
 
@@ -38,16 +42,18 @@ def main():
                       args.sourceroot,
                       args.targetroot,
                       args.subprojectnum,
-                      args.filenum)
+                      args.filenum,
+                      args.toolversion)
 
 
-def transformFile(file, sourceroot, targetroot, subprojectnum, filenum):
+def transformFile(file, sourceroot, targetroot, subprojectnum, filenum, toolversion):
     relpath = os.path.relpath(file, sourceroot)
     target_dir = os.path.join(targetroot, os.path.dirname(relpath))
     params = {'subprojectnum': subprojectnum,
               'filenum': filenum,
               'index': '',
-              'proindex': ''
+              'proindex': '',
+              'toolversion': toolversion
           }
     if (target_dir.find('PROINDEX') >= 0):
         for proindex in range(0, subprojectnum):

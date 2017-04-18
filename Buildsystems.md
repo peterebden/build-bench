@@ -15,17 +15,17 @@ Install ivy by placing ivy jar in ant lib dir. See <http://ant.apache.org/ivy/hi
 ant was difficult to debug (in particular what was missing for junit4).
 
 
-## Gradle
+## Gradle (3.3)
 
 See <https://gradle.org/>
 
 Gradle was most convenient at testing with junit, it detected itself what was a testcase and what not without relying on the name. The other buildsystems either relied on names (causing both false positives and false negatives), or simply failed with InstantiationException.
 
-To produce fair benchmark results, some test classes had to be removed because they would have punished Gradle for being smarter than the rest, running more tests.
+To produce fair benchmark results, some test classes had to be removed because they would have punished Gradle for being smarter than the rest, recognizing more test classes with nonstandard names.
 
 I recommend <http://sdkman.io/> for installing gradle.
 
-## Maven
+## Maven (3.3.3)
 
 <http://maven.apache.org>
 
@@ -58,7 +58,7 @@ Trying to have separated folders for unit and integration tests also seems like 
 Setting up code warnings in Maven:
 ```http://www.artificialworlds.net/blog/2016/12/23/setting-up-a-sane-maven-project/```
 
-## Sbt
+## Sbt (0.13.9)
 
 <http://www.scala-sbt.org/download.html>
 
@@ -66,7 +66,7 @@ Running junit 4.11 tests with sbt was a pain, because getting junit 4.x to work 
 
 sbt occasionally failed apache commons-math tests, but not consistently so.
 
-## leiningen
+## leiningen (2.5.3)
 
 <http://leiningen.org/>
 
@@ -78,7 +78,7 @@ E.g. Leiningen had no bundled support for subprojects, 3 different plugins libs 
 
 Also Leiningen had no support for parallel builds / test, but 4 different plugin projects offered this feature.
 
-## buildr
+## buildr (1.4.23)
 
 <http://buildr.apache.org/>
 
@@ -88,7 +88,7 @@ buildr (and sbt I think) used the current CLASSPATH when running tests (instead 
 
 The buildr process was quite fast for small projects, with apparently very little overhead and good parallelization.
 
-## bazel
+## bazel (0.1.3)
 
 See <http://bazel.io/>
 
@@ -124,7 +124,7 @@ But I have not tried this out myself.
 
 Bazel 0.1.3 gave confusing caching results when building multiple times, rebuilding one artifact out of 3 when no file had changed.
 
-## buck
+## buck (2015.12)
 
 See <https://buckbuild.com/>
 
@@ -137,7 +137,7 @@ buck very few high-level features and plugins compared to gradle and maven, in p
 buckd left behind many process running in the background. It recommends installing a separate application "watchman" to further optimize caching of build files. watchman itself also seems like a fickle install.
 
 
-## pants
+## pants (0.7.0)
 
 <https://pantsbuild.github.io/>
 

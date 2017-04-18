@@ -40,6 +40,8 @@ $(CACHE_DIR)/commons-math:
 	rm -f $(CACHE_DIR)/commons-math/src/test/java/org/apache/commons/math3/optimization/general/AbstractLeastSquaresOptimizerTestValidation.java
 	rm -f $(CACHE_DIR)/commons-math/src/test/java/org/apache/commons/math3/util/FastMathTestPerformance.java
 # Brittle tests sometimes failing for no obvious reason
-	rm -f $(CACHE_DIR)/commons-math/src/test/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizerTest.java7
+	rm -f $(CACHE_DIR)/commons-math/src/test/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizerTest.java
+	rm -f $(CACHE_DIR)/commons-math/src/test/java/org/apache/commons/math3/analysis/polynomials/PolynomialsUtilsTest.java
+	rm -f $(CACHE_DIR)/commons-math/src/test/java/org/apache/commons/math3/random/CorrelatedRandomVectorGeneratorTest.java
 	mv $(CACHE_DIR)/commons-math/pom.xml $(CACHE_DIR)/commons-math/pom.xml.bak
 	mv $(CACHE_DIR)/commons-math/build.xml $(CACHE_DIR)/commons-math/build.xml.bak

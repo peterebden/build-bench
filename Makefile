@@ -112,6 +112,14 @@ pants%: $(CONFIGURED_BUILD_ROOT)/pants%/src
 	$(MAKE) -C $(BUILDSYSTEMS_DIR)/pants $@
 
 
+.PHONY: please
+please:please$(PLEASE_DEFAULT_VERSION)
+
+.PHONY: please%
+please%: $(CONFIGURED_BUILD_ROOT)/please%/src
+	$(MAKE) -C $(BUILDSYSTEMS_DIR)/please $@
+
+
 .PHONY: versions
 versions:
 	java -version

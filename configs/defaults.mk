@@ -40,6 +40,7 @@ export SBT_DEFAULT_VERSION=0.13.13
 # pants is horrible at backwards compatibility, expect problems when upgrading
 export PANTS_DEFAULT_VERSION=1.2.1
 export BAZEL_DEFAULT_VERSION=0.4.5
+export PLEASE_DEFAULT_VERSION=7.12.0
 
 ## Build orchestration variables
 ## Should usually be left alone

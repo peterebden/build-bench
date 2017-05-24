@@ -36,5 +36,5 @@ maven_jar(
 
 maven_jar(
     name = 'hamcrest-core',
-    id = 'org.hamcrest:hamcrest-core:jar:1.3',
+    id = 'org.hamcrest:hamcrest-core:1.3',
 )

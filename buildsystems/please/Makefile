@@ -16,7 +16,6 @@ include $(ROOT_DIR)/include/generators.mk
 default: please
 
 include $(ROOT_DIR)/include/time.mk
-include $(ROOT_DIR)/include/ant.mk
 
 export PLEASE_DIR=$(CACHE_DIR)/please
 
@@ -32,7 +31,7 @@ version: $(PLEASE_DIR)/please$(PLEASE_DEFAULT_VERSION)/please
 please%: $(CONFIGURED_BUILD_ROOT)/please%/PLEASE $(PLEASE_DIR)/please%/please $(REPORTS_DIR)/$(TARGET_NAME).csv
 	$(info ******* please start)
 	cd $(CONFIGURED_BUILD_ROOT)/please$*; $(PLEASE_DIR)/please$*/please build //:junit //:hamcrest-core
-	cd $(CONFIGURED_BUILD_ROOT)/please$*; ANT_HOME=$(ANT_HOME) PATH=$(ANT_IVY_PATH):$(PATH) $(call TIME_CMD,$@) $(PLEASE_DIR)/please$*/please test -p
+	cd $(CONFIGURED_BUILD_ROOT)/please$*; PATH=$(PATH) $(call TIME_CMD,$@) $(PLEASE_DIR)/please$*/please test
 
 .PRECIOUS: $(PLEASE_DIR)/%.tar
 $(PLEASE_DIR)/%.tar.gz:

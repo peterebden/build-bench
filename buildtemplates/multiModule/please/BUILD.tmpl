@@ -1,0 +1,19 @@
+# java_test(
+#   name = 'tests',
+#   deps = [
+#   {% for var in range(0, subprojectnum) %}
+#   '//subproject{{ var }}:tests',{% endfor %}
+#   ':junit',
+#   ':hamcrest-core'],
+# )
+
+# define a dependency
+maven_jar(
+    name = 'junit',
+    id = 'junit:junit:4.11',
+)
+
+maven_jar(
+    name = 'hamcrest-core',
+    id = 'org.hamcrest:hamcrest-core:jar:1.3',
+)

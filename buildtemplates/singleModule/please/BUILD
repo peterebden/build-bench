@@ -5,7 +5,8 @@ java_library(
 
 java_library(
     name = 'example-tests',
-    srcs = glob(['src/test/java/**/*.java']),
+    srcs = glob(['src/test/java/**/*.java'], excludes = ['*Test.java']),
+    test_only = True,
     deps = [
         ':example',
         ':hamcrest-core',
@@ -13,20 +14,23 @@ java_library(
     ],
 )
 
-java_test(
-    name = 'tests',
-    srcs = glob(['src/test/java/**/*Test.java'], excludes = ['src/test/java/**/*AbstractTest.java']),
-    resources = glob([
-        'src/test/resources/**/*',
-        'src/main/resources/**/*',
-    ]),
-    deps = [
-        ':example',
-        ':example-tests',
-        ':hamcrest-core',
-        ':junit',
-    ],
-)
+# Break tests into multiple parts (rather than having one huge test target that tests everything)
+for src in glob(['src/test/java/**/*Test.java'], excludes = ['src/test/java/**/*AbstractTest.java']):
+    name, _ = splitext(src[len('src/test/java/org/apache/commons/math3/'):-5])
+    java_test(
+        name = name.replace('/', '_'),
+        srcs = [src],
+        resources = glob([
+            'src/test/resources/**/*',
+            'src/main/resources/**/*',
+        ]),
+        deps = [
+            ':example',
+            ':example-tests',
+            ':hamcrest-core',
+            ':junit',
+        ],
+    )
 
 # define a dependency
 maven_jar(
